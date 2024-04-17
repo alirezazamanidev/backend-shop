@@ -12,5 +12,7 @@ declare namespace NodeJS {
         DB_USERNAME:string
         DB_PORT:number
         DB_NAME:string
+        // Secrets
+        OTP_TOKEN_SECRET:string
     }
 }
