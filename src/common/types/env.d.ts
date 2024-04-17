@@ -9,7 +9,8 @@ declare namespace NodeJS {
         DB_TYPE:string
         DB_HOST:string
         DB_PASSWORD:string
-        DB_PROT:string
+        DB_USERNAME:string
+        DB_PORT:number
         DB_NAME:string
     }
 }
