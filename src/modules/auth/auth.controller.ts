@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, Post, Res } from '@nestjs/commo
 import { AuthService } from './auth.service';
 import { ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ContentType, SwaggerTags } from 'src/common/enums';
-import { SendOtpDto } from './dto';
+import { CheckOtpDto, SendOtpDto } from './dto';
 import { Response } from 'express';
 
 @Controller('auth')
@@ -17,5 +17,14 @@ export class AuthController {
   @ApiConsumes(ContentType.UrlEncoded,ContentType.Json)
   sendOtp(@Body() SendOtpDto:SendOtpDto,@Res() res:Response){
     return this.authService.sendOtp(SendOtpDto,res);
+  }
+
+
+  @ApiOperation({summary:'check otp'})
+  @HttpCode(HttpStatus.OK)
+  @Post('/check-otp')
+  @ApiConsumes(ContentType.UrlEncoded,ContentType.Json)
+  checkOtp(@Body() checkOtpDto:CheckOtpDto){
+    return this.authService.checkOtp(checkOtpDto);
   }
 }

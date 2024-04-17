@@ -14,5 +14,7 @@ declare namespace NodeJS {
         DB_NAME:string
         // Secrets
         OTP_TOKEN_SECRET:string
+        ACCESS_TOKEN_SECRET:string
+        COOKIE_TOKEN_SECRET:string
     }
 }
