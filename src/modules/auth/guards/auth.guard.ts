@@ -13,12 +13,11 @@ import { AuthService } from '../auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService) {}
-  async canActivate(
-    context: ExecutionContext,
-  ) {
+  async canActivate(context: ExecutionContext) {
     const ctx = context.switchToHttp();
     const request = ctx.getRequest<Request>();
     const token = this.extractToken(request);
+
     request.user = await this.authService.validateAccessToken(token);
     return true;
   }
@@ -27,8 +26,10 @@ export class AuthGuard implements CanActivate {
     const { authorization } = request.headers;
     if (!authorization || authorization.trim() == '')
       throw new UnauthorizedException(AuthMessage.LoginIsRequired);
+
     const [bearer, token] = authorization.split(' ');
-    if (bearer.toLowerCase() !== 'bearer' || !token || isJWT(token))
+
+    if (bearer.toLowerCase() !== 'bearer' || !token || !isJWT(token))
       throw new UnauthorizedException(AuthMessage.LoginIsRequired);
 
     return token;
