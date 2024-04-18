@@ -32,4 +32,13 @@ export class TokenService {
     })
     return token;
   }
+  verifyAccessToken(token:string):AccessTokenPayload{
+    try {
+      return this.JwtService.verify(token, {
+          secret: process.env.ACCESS_TOKEN_SECRET,
+      })
+  } catch (error) {
+      throw new UnauthorizedException(AuthMessage.LoginAgain)
+  }
+  }
 }

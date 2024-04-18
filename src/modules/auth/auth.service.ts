@@ -55,8 +55,12 @@ export class AuthService {
         accessToken
     }
   }
-
-
+  async validateAccessToken(token:string){
+    const {userId}=this.tokenService.verifyAccessToken(token);
+    const user=await this.userRepo.findOne({where:{id:userId}});
+    if(!user) throw new UnauthorizedException(AuthMessage.LoginAgain);
+    return user;
+  }
   private setOtpCookie(res:Response,result:AuthResponse){
     const {otpToken,code}=result
     res.cookie(CookieKeys.Otp,otpToken,{
