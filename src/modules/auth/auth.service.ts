@@ -79,7 +79,10 @@ export class AuthService {
     const code = randomInt(10000, 99999).toString();
     const expiresIn = new Date(new Date().getTime() + 2 * 1000 * 60);
     let existOtp = false;
+    const now=new Date();
+
     if (otp) {
+      if(otp.expiresIn > now) throw new UnauthorizedException(AuthMessage.NotExpiredOtp);
       existOtp = true;
       otp.code = code;
       otp.expiresIn = expiresIn;
@@ -91,6 +94,7 @@ export class AuthService {
       });
     }
     otp = await this.otpRepo.save(otp);
+  
     if (!existOtp)
       await this.userRepo.update({ id: user.id }, { otpId: otp.id });
     return otp;
