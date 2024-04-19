@@ -11,4 +11,10 @@ export enum AuthMessage {
 export enum PublicMessage {
     SentOtp = "کد یکبار مصرف با موفقیت ارسال شد",
     LoggedIn = "با موفقیت وارد حساب کاربری خود شدید",
+
+    Created='با موفقیت ایجاد شد!'
+}
+
+export enum ConflictMessage {
+    Slug='چنین موردی قبلا با این اسلاگ ثبت شدذه است!'
 }

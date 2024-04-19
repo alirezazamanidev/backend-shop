@@ -9,5 +9,6 @@ import { TokenService } from './tokens.service';
   imports:[UserModule,JwtModule.register({global:true})],
   controllers: [AuthController],
   providers: [AuthService,TokenService],
+  exports:[AuthService]
 })
 export class AuthModule {}

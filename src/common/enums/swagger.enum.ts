@@ -8,6 +8,7 @@ export enum SwaggerTags {
   User = 'User',
   Authorization = 'Authorization',
   AdminPanel = 'AdminPanel',
+  CategoryAdmin='Category(AdminPanel)'
 }
 export enum SwaggerAuth {
   Bearer = 'bearer',
