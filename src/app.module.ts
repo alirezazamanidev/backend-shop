@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmDbConfig } from './config';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoryModule } from './modules/category/category.module';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
@@ -11,7 +13,9 @@ import { AuthModule } from './modules/auth/auth.module';
       inject:[TypeOrmDbConfig]
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    CategoryModule,
+    ProductModule
   ],
   providers:[TypeOrmDbConfig]
 })

@@ -5,10 +5,12 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   UpdateDateColumn,
 } from 'typeorm';
 import { OtpEntity } from './otp.entity';
+import { ProductEntity } from 'src/modules/product/enities';
 
 @Entity(EntityName.User)
 export class UserEntity extends BaseEntity {
@@ -28,4 +30,7 @@ export class UserEntity extends BaseEntity {
   @OneToOne(() => OtpEntity, (otp) => otp.user, { onDelete: 'CASCADE' })
   @JoinColumn({name:'otpId'})
   otp: OtpEntity;
+  @OneToMany(()=>ProductEntity,product=>product.supplear)
+  products:ProductEntity[]
+  
 }
